@@ -8,6 +8,7 @@ import java.time.LocalDate;
 
 @Entity
 @Table(name="profiles")
+
 public class Profile {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,7 +22,7 @@ public class Profile {
 
     @OneToOne
     @JoinColumn(name = "user_id")
-    @JsonBackReference
+    @JsonBackReference(value = "user-profile")
     private User user;
 
     @Column(name = "createdAt")
@@ -31,19 +32,20 @@ public class Profile {
     private LocalDate updatedAt;
 
     @OneToOne(mappedBy = "profile")
-    @JsonManagedReference
+    @JsonManagedReference(value = "employee-profile")
     private Employee employee;
 
     public Profile(){
     }
 
-    public Profile(Integer id, String image, String phone, User user, LocalDate createdAt, LocalDate updatedAt) {
+    public Profile(Integer id, String image, String phone, User user, LocalDate createdAt, LocalDate updatedAt, Employee employee) {
         this.id = id;
         this.image = image;
         this.phone = phone;
         this.user = user;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
+        this.employee = employee;
     }
 
     public Employee getEmployee() {
@@ -101,4 +103,6 @@ public class Profile {
     public void setUpdatedAt(LocalDate updatedAt) {
         this.updatedAt = updatedAt;
     }
+
+
 }

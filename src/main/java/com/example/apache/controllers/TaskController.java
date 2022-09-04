@@ -22,7 +22,7 @@ public class TaskController {
         return this.services.getTaskList();
     }
 
-    @PostMapping("/tasks")
+    @PostMapping(value = "/tasks",  consumes = {"application/json"})
     public Task createTasks(@RequestBody Task task){
         return this.services.createTask(task);
     }

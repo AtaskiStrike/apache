@@ -3,6 +3,7 @@ import javax.persistence.*;
 import java.time.LocalDate;
 @Entity
 @Table(name = "task")
+
 public class Task {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

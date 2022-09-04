@@ -16,4 +16,8 @@ public class ProfileService {
     public List<Profile> getProfileList(){
         return this.repository.findAll();
     }
+
+    public Profile createProfile(Profile newProfile){
+        return this.repository.save(newProfile);
+    }
 }

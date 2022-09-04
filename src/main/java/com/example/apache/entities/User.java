@@ -6,6 +6,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "users")
+
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -18,7 +19,7 @@ public class User {
     private String fullName;
 
     @OneToOne(mappedBy = "user")
-    @JsonManagedReference
+    @JsonManagedReference(value = "user-profile")
     private Profile profile;
 
     public User(){
@@ -40,7 +41,7 @@ public class User {
     }
 
     public String getFullName() {
-        return fullName;
+            return fullName;
     }
 
     public Profile getProfile() {
@@ -62,4 +63,6 @@ public class User {
     public void setProfile(Profile profile) {
         this.profile = profile;
     }
+
+
 }
