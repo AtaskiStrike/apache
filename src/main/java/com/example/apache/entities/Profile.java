@@ -22,7 +22,7 @@ public class Profile {
 
     @OneToOne
     @JoinColumn(name = "user_id")
-    @JsonBackReference(value = "user-profile")
+    @JsonManagedReference(value = "user-profile")
     private User user;
 
     @Column(name = "createdAt")
