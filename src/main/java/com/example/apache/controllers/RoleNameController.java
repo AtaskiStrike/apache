@@ -1,6 +1,5 @@
 package com.example.apache.controllers;
 
-import com.example.apache.entities.Enterprise;
 import com.example.apache.entities.RoleName;
 import com.example.apache.services.RoleNameService;
 import org.springframework.web.bind.annotation.*;
@@ -33,8 +32,12 @@ public class RoleNameController {
 
     @DeleteMapping("/rolename/{id}")
     public String DeleteId(@PathVariable("id") Long id){
-
         this.services.deleteId(id);
         return "Registro eliminado con exito";
+    }
+
+    @PutMapping("/rolename/{id}")
+    Optional<RoleName> replaceUser(@RequestBody RoleName newData, @PathVariable Long id) {
+        return this.services.updateID(newData,id);
     }
 }

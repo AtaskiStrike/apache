@@ -25,15 +25,20 @@ public class ProfileController {
         return this.service.createProfile(profile);
     }
 
-    @GetMapping("/profile/{id}")
+    @GetMapping("/profiles/{id}")
     public Optional<Profile> GetId(@PathVariable("id") Long id){
         return this.service.getId(id);
     }
 
-    @DeleteMapping("/profile/{id}")
+    @DeleteMapping("/profiles/{id}")
     public String DeleteId(@PathVariable("id") Long id){
 
         this.service.deleteId(id);
         return "Registro eliminado con exito";
+    }
+
+    @PutMapping("/profiles/{id}")
+    Optional<Profile> replaceUser(@RequestBody Profile newData, @PathVariable Long id) {
+        return this.service.updateID(newData,id);
     }
 }

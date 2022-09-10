@@ -30,4 +30,20 @@ public class TransactionService {
     public void deleteId(long id){
         this.repository.deleteById( id);
     }
+
+    public Optional<Transaction> updateID(Transaction newData, Long id){
+        return Optional.of(this.repository.findById(id)
+                .map(transaction -> {
+                    transaction.setConcept(newData.getConcept());
+                    transaction.setAmount(newData.getAmount());
+                    transaction.setCreatedAt(newData.getCreatedAt());
+                    transaction.setUpdatedAt(newData.getUpdatedAt());
+                    transaction.setEmployee(newData.getEmployee());
+                    transaction.setEnterprise(newData.getEnterprise());
+                    return repository.save(transaction);
+                }).orElseGet(() -> {
+                    newData.setId(id);
+                    return repository.save(newData);
+                }));
+    }
 }

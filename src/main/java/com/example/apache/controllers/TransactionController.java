@@ -1,6 +1,5 @@
 package com.example.apache.controllers;
 
-import com.example.apache.entities.Employee;
 import com.example.apache.entities.Transaction;
 import com.example.apache.services.TransactionService;
 import org.springframework.web.bind.annotation.*;
@@ -36,6 +35,11 @@ public class TransactionController {
 
         this.service.deleteId(id);
         return "Registro eliminado con exito";
+    }
+
+    @PutMapping("/transaction/{id}")
+    Optional<Transaction> replaceUser(@RequestBody Transaction newData, @PathVariable Long id) {
+        return this.service.updateID(newData,id);
     }
 
 }

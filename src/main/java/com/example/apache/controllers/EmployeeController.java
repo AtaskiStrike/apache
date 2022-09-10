@@ -1,6 +1,5 @@
 package com.example.apache.controllers;
 import com.example.apache.entities.Employee;
-import com.example.apache.entities.RoleName;
 import com.example.apache.services.EmployeeService;
 import org.springframework.web.bind.annotation.*;
 
@@ -35,5 +34,10 @@ public class EmployeeController {
 
         this.service.deleteId(id);
         return "Registro eliminado con exito";
+    }
+
+    @PutMapping("/employee/{id}")
+    Optional<Employee> replaceUser(@RequestBody Employee newData, @PathVariable Long id) {
+        return this.service.updateID(newData,id);
     }
 }

@@ -1,5 +1,6 @@
 package com.example.apache.services;
 import com.example.apache.entities.Profile;
+import com.example.apache.entities.User;
 import com.example.apache.repositories.ProfileRepository;
 import org.springframework.stereotype.Service;
 
@@ -28,5 +29,20 @@ public class ProfileService {
 
     public void deleteId(long id){
         this.repository.deleteById(id);
+    }
+
+    public Optional<Profile> updateID(Profile newData, Long id){
+        return Optional.of(this.repository.findById(id)
+                .map(profile -> {
+                    profile.setImage(newData.getImage());
+                    profile.setPhone(newData.getPhone());
+                    profile.setCreatedAt(newData.getCreatedAt());
+                    profile.setUpdatedAt(newData.getUpdatedAt());
+                    profile.setUser(newData.getUser());
+                    return repository.save(profile);
+                }).orElseGet(() -> {
+                    newData.setId(id);
+                    return repository.save(newData);
+                }));
     }
 }

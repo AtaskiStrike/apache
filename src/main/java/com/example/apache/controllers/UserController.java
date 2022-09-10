@@ -26,15 +26,20 @@ public class UserController {
         return this.services.createUser(user);
     }
 
-    @GetMapping("/user/{id}")
+    @GetMapping("/users/{id}")
     public Optional<User> UserId(@PathVariable("id") Long id){
         return this.services.getUserId(id);
     }
 
-    @DeleteMapping("/user/{id}")
+    @DeleteMapping("/users/{id}")
     public String DeleteId(@PathVariable("id") Long id){
 
         this.services.deleteUserId(id);
         return "Usuario fue eliminado con exito";
+    }
+
+    @PutMapping("/users/{id}")
+    Optional<User> replaceUser(@RequestBody User newUser, @PathVariable Long id) {
+        return this.services.updateID(newUser,id);
     }
 }

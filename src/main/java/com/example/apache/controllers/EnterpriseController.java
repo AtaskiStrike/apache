@@ -36,4 +36,10 @@ public class EnterpriseController {
         this.service.deleteId(id);
         return "Registro eliminado con exito";
     }
+
+    @PutMapping("/enterprise/{id}")
+    Optional<Enterprise> replaceUser(@RequestBody Enterprise newData, @PathVariable Long id) {
+        return this.service.updateID(newData,id);
+    }
+
 }

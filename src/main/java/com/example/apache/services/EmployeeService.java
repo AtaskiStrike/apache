@@ -30,4 +30,20 @@ public class EmployeeService {
     public void deleteId(long id){
         this.repository.deleteById( id);
     }
+
+    public Optional<Employee> updateID(Employee newData, Long id){
+        return Optional.of(this.repository.findById(id)
+                .map(employee -> {
+                    employee.setEmail(newData.getEmail());
+                    employee.setCreatedAt(newData.getCreatedAt());
+                    employee.setUpdatedAt(newData.getUpdatedAt());
+                    employee.setEnterprise(newData.getEnterprise());
+                    employee.setProfile(newData.getProfile());
+                    employee.setRoleName(newData.getRoleName());
+                    return repository.save(employee);
+                }).orElseGet(() -> {
+                    newData.setId(id);
+                    return repository.save(newData);
+                }));
+    }
 }

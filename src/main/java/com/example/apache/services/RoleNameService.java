@@ -30,4 +30,15 @@ public class RoleNameService {
     public void deleteId(long id){
         this.repository.deleteById( id);
     }
+
+    public Optional<RoleName> updateID(RoleName newData, Long id){
+        return Optional.of(this.repository.findById(id)
+                .map(roleName -> {
+                    roleName.setRoleName(newData.getRoleName());
+                    return repository.save(roleName);
+                }).orElseGet(() -> {
+                    newData.setId(id);
+                    return repository.save(newData);
+                }));
+    }
 }
