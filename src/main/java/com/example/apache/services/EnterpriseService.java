@@ -5,6 +5,7 @@ import com.example.apache.repositories.EnterpriseRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class EnterpriseService {
@@ -20,5 +21,13 @@ public class EnterpriseService {
 
     public Enterprise createEnterprise(Enterprise newEnterprise){
         return this.repository.save(newEnterprise);
+    }
+
+    public Optional<Enterprise> getId(long id){
+        return this.repository.findById(id);
+    }
+
+    public void deleteId(long id){
+        this.repository.deleteById( id);
     }
 }

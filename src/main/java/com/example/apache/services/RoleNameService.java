@@ -5,6 +5,7 @@ import com.example.apache.repositories.RoleNameRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class RoleNameService {
@@ -20,5 +21,13 @@ public class RoleNameService {
 
     public RoleName createRoleName(RoleName newRoleName){
         return this.repository.save(newRoleName);
+    }
+
+    public Optional<RoleName> getId(long id){
+        return this.repository.findById(id);
+    }
+
+    public void deleteId(long id){
+        this.repository.deleteById( id);
     }
 }

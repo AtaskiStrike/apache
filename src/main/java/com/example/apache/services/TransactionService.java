@@ -5,6 +5,7 @@ import com.example.apache.repositories.TransactionRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class TransactionService {
@@ -20,5 +21,13 @@ public class TransactionService {
 
     public Transaction createTransaction(Transaction newTransaction){
         return this.repository.save(newTransaction);
+    }
+
+    public Optional<Transaction> getId(long id){
+        return this.repository.findById(id);
+    }
+
+    public void deleteId(long id){
+        this.repository.deleteById( id);
     }
 }

@@ -4,6 +4,7 @@ import com.example.apache.repositories.ProfileRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ProfileService {
@@ -19,5 +20,13 @@ public class ProfileService {
 
     public Profile createProfile(Profile newProfile){
         return this.repository.save(newProfile);
+    }
+
+    public Optional<Profile> getId(long id){
+        return this.repository.findById(id);
+    }
+
+    public void deleteId(long id){
+        this.repository.deleteById(id);
     }
 }

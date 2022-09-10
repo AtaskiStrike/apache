@@ -1,13 +1,12 @@
 package com.example.apache.controllers;
 
+import com.example.apache.entities.Employee;
 import com.example.apache.entities.Transaction;
 import com.example.apache.services.TransactionService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 public class TransactionController {
@@ -25,6 +24,18 @@ public class TransactionController {
     @PostMapping(value = "/transaction", consumes = {"application/json"})
     public Transaction createTransaction(@RequestBody Transaction transaction){
         return this.service.createTransaction(transaction);
+    }
+
+    @GetMapping("/transaction/{id}")
+    public Optional<Transaction> getId(@PathVariable("id") Long id){
+        return this.service.getId(id);
+    }
+
+    @DeleteMapping("/transaction/{id}")
+    public String DeleteId(@PathVariable("id") Long id){
+
+        this.service.deleteId(id);
+        return "Registro eliminado con exito";
     }
 
 }
